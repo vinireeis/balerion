@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "balerion"
+version = "0.1.0"
+description = "A to-do-list API, with conecepts of Onion/Clean Architecture."
+authors = ["Vinicius Reis <v_reis@outlook.com.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
