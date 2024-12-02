@@ -101,7 +101,7 @@ python3 main.py
 
 Você verá uma saída semelhante:  
 ```bash  
-balerion-api          | Server is ready at URL 0.0.0.0:5000/caraxes-api
+balerion-api          | Server is ready at URL 0.0.0.0:5000/balerion-api
 balerion-api          |                                                      _
 balerion-api          |  _           _           _                               _
 balerion-api          | | |__   __ _| | ___ _ __(_) ___  _ __         __ _ _ __ (_)
