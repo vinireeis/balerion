@@ -250,9 +250,12 @@ Todas as respostas da API seguem um padrão consistente, garantindo uma fácil i
 **Parâmetros do corpo da requisição**:  
 | Parâmetro | Descrição        | Obrigatório | Exemplo          |  
 |-----------|------------------|-------------|------------------|  
-| name      | Nome da tarefa   | Sim         | "Updated Task"   |  
-| status    | Status da tarefa | Sim         | "IN_PROGRESS"    |  
-| priority  | Prioridade       | Não         | "LOW"            |  
+| title        | Título da tarefa    | Sim         | "Atualizar nome da tarerfa" |
+| description  | Descrição da tarefa | Não         | "Descrição"                 |
+| status       | Status da tarefa    | Sim         | "DOING"                     |
+| priority     | Prioridade          | Sim         | "HIGH"                      |
+| deadline     | Data limite         | Não         | "2024-12-31"                |
+
 
 **Resposta**:  
 ```json  
