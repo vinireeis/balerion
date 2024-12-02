@@ -5,7 +5,11 @@ from flask import Flask, Response, g, jsonify, request
 from loguru import logger
 from pydantic import ValidationError
 
-from src.domain.exceptions.base.exception import RepositoryException
+from src.domain.enums.http_response.enum import InternalCodeEnum
+from src.domain.exceptions.base.exception import (
+    RepositoryException,
+    ServiceException,
+)
 
 
 class Middleware:
@@ -39,17 +43,25 @@ class Middleware:
                     'internal_code': error.internal_code,
                 }), error.status_code
 
+            if isinstance(error, ServiceException):
+                logger.info(error.msg)
+                return jsonify({
+                    'success': False,
+                    'message': error.msg,
+                    'internal_code': error.internal_code,
+                }), error.status_code
+
             if isinstance(error, ValidationError):
                 logger.info(error)
                 return jsonify({
                     'success': False,
-                    'internal_code': 'DATA_CONVERTER_ERROR',
+                    'internal_code': InternalCodeEnum.DATA_VALIDATION_ERROR,
                     'message': str(error),
                 }), HTTPStatus.INTERNAL_SERVER_ERROR
 
             logger.info(error)
             return jsonify({
                 'success': False,
-                'internal_code': 'INTERNAL_SERVER_ERROR',
+                'internal_code': InternalCodeEnum.INTERNAL_SERVER_ERROR,
                 'message': 'Unexpected error has occurred',
             }), HTTPStatus.INTERNAL_SERVER_ERROR

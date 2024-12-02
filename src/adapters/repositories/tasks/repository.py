@@ -4,12 +4,12 @@ from sqlalchemy.exc import NoResultFound
 
 from src.adapters.data_types.requests.tasks_request import (
     NewTaskRequest,
+    PatchTaskStatusRequest,
     UpdateTaskRequest,
 )
 from src.adapters.data_types.typed_dicts.tasks_typed_dict import (
     PaginatedTasksTypedDict,
 )
-from src.domain.enums.tasks.enum import TaskStatusEnum
 from src.domain.exceptions.repository.exception import (
     TaskAlreadyInStatusError,
     TaskNotFoundError,
@@ -29,13 +29,7 @@ class TaskRepository:
         task_request: NewTaskRequest,
     ) -> TaskModel:
         async with cls.postgres_infrastructure.get_session() as session:
-            new_task_model = TaskModel(
-                title=task_request.name,
-                description=task_request.description,
-                status=task_request.status,
-                priority=task_request.priority,
-                deadline=task_request.deadline,
-            )
+            new_task_model = TaskModel(**task_request.model_dump())
             session.add(new_task_model)
             await session.commit()
             await session.refresh(new_task_model)
@@ -103,10 +97,12 @@ class TaskRepository:
                 raise TaskNotFoundError(task_id)
 
     async def update_task_status(
-        self, task_id: int, new_status: TaskStatusEnum
+        self, request: PatchTaskStatusRequest
     ) -> TaskModel:
         async with self.postgres_infrastructure.get_session() as session:
             try:
+                task_id = request.task_id
+                new_status = request.status
                 statement = select(TaskModel).where(TaskModel.id == task_id)
                 db_result = await session.execute(statement)
                 task = db_result.scalar_one()

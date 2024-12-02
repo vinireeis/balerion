@@ -2,8 +2,8 @@ from http import HTTPStatus
 
 from src.adapters.data_types.requests.tasks_request import (
     NewTaskRequest,
+    PatchTaskStatusRequest,
     UpdateTaskRequest,
-    UpdateTaskStatusRequest,
 )
 from src.adapters.data_types.responses.tasks_response import (
     DeleteTaskResponse,
@@ -92,24 +92,24 @@ class TasksController:
 
     @classmethod
     async def update_task(
-        cls, task_id: int, request: UpdateTaskRequest
+        cls, update_task_request: UpdateTaskRequest
     ) -> UpdateTaskResponse:
-        await TasksService.update_task(task_id=task_id, request=request)
+        await TasksService.update_task(request=update_task_request)
         response = UpdateTaskResponse(
             success=True,
-            message='Task updated successfully.',
+            message='Task has been updated.',
             status_code=HTTPStatus.OK,
         )
         return response
 
     @classmethod
-    async def update_task_status(
-        cls, task_id: int, request: UpdateTaskStatusRequest
+    async def patch_task_status(
+        cls, patch_status_request: PatchTaskStatusRequest
     ) -> UpdateTaskStatusResponse:
-        await TasksService.update_task_status(task_id=task_id, request=request)
+        await TasksService.patch_task_status(request=patch_status_request)
         response = UpdateTaskStatusResponse(
             success=True,
-            message='Task status updated successfully.',
+            message='Task status has been updated.',
             status_code=HTTPStatus.OK,
         )
         return response

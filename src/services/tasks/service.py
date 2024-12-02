@@ -1,7 +1,7 @@
 from src.adapters.data_types.requests.tasks_request import (
     NewTaskRequest,
+    PatchTaskStatusRequest,
     UpdateTaskRequest,
-    UpdateTaskStatusRequest,
 )
 from src.adapters.data_types.typed_dicts.tasks_typed_dict import (
     PaginatedTasksTypedDict,
@@ -46,22 +46,18 @@ class TasksService:
     @classmethod
     async def update_task(
         cls,
-        task_id: int,
         request: UpdateTaskRequest,
     ):
         await cls._task_repository.update_task(
-            task_id=task_id, task_request=request
+            task_id=request.task_id, task_request=request
         )
 
     @classmethod
-    async def update_task_status(
+    async def patch_task_status(
         cls,
-        task_id: int,
-        request: UpdateTaskStatusRequest,
+        request: PatchTaskStatusRequest,
     ):
-        await cls._task_repository.update_task_status(
-            task_id=task_id, new_status=request.status
-        )
+        await cls._task_repository.update_task_status(request=request)
 
     @classmethod
     async def delete_task(
