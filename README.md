@@ -222,7 +222,6 @@ Todas as respostas da API seguem um padrão consistente, garantindo uma fácil i
 **Parâmetros de caminho**:  
 | Parâmetro  | Descrição       | Obrigatório | Exemplo |  
 |------------|-----------------|-------------|---------|  
-| project_id | ID do projeto   | Sim         | 1       |  
 | task_id    | ID da tarefa    | Sim         | 1       |  
 
 **Resposta**:  
@@ -246,7 +245,6 @@ Todas as respostas da API seguem um padrão consistente, garantindo uma fácil i
 **Parâmetros de caminho**:  
 | Parâmetro  | Descrição       | Obrigatório | Exemplo |  
 |------------|-----------------|-------------|---------|  
-| project_id | ID do projeto   | Sim         | 1       |  
 | task_id    | ID da tarefa    | Sim         | 1       |  
 
 **Parâmetros do corpo da requisição**:  
@@ -274,7 +272,6 @@ Todas as respostas da API seguem um padrão consistente, garantindo uma fácil i
 **Parâmetros de caminho**:  
 | Parâmetro  | Descrição       | Obrigatório | Exemplo |  
 |------------|-----------------|-------------|---------|  
-| project_id | ID do projeto   | Sim         | 1       |  
 | task_id    | ID da tarefa    | Sim         | 1       |  
 
 **Parâmetros do corpo da requisição**:  
