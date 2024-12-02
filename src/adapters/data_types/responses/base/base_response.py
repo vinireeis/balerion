@@ -9,7 +9,7 @@ class BaseResponse(BaseModel):
     success: bool = False
     internal_code: InternalCodeEnum = InternalCodeEnum.SUCCESS
     message: str = None
-    status_code: HTTPStatus = None
+    status: HTTPStatus = None
 
     @classmethod
     def get_swagger_schema(cls):

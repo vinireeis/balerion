@@ -32,7 +32,7 @@ class TasksController:
             payload=TaskIdPayload(id=new_user_model.id),
             success=True,
             message='Task has been created.',
-            status_code=HTTPStatus.CREATED,
+            status=HTTPStatus.CREATED,
         )
 
         return response
@@ -52,7 +52,7 @@ class TasksController:
                 updated_at=task_model.updated_at,
             ),
             success=True,
-            status_code=HTTPStatus.OK,
+            status=HTTPStatus.OK,
         )
         return response
 
@@ -86,7 +86,7 @@ class TasksController:
                 offset=tasks_result.get('offset'),
             ),
             success=True,
-            status_code=HTTPStatus.OK,
+            status=HTTPStatus.OK,
         )
         return response
 
@@ -98,7 +98,7 @@ class TasksController:
         response = UpdateTaskResponse(
             success=True,
             message='Task has been updated.',
-            status_code=HTTPStatus.OK,
+            status=HTTPStatus.OK,
         )
         return response
 
@@ -110,7 +110,7 @@ class TasksController:
         response = PatchTaskStatusResponse(
             success=True,
             message='Task status has been updated.',
-            status_code=HTTPStatus.OK,
+            status=HTTPStatus.OK,
         )
         return response
 
@@ -119,6 +119,6 @@ class TasksController:
         await TasksService.delete_task(task_id=task_id)
         response = DeleteTaskResponse(
             success=True,
-            status_code=HTTPStatus.OK,
+            status=HTTPStatus.OK,
         )
         return response

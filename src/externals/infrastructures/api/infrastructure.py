@@ -10,15 +10,6 @@ from src.externals.routers.tasks.task_router import tasks_blueprint
 
 logging.basicConfig(level=logging.DEBUG)
 
-swagger_template = {
-    'swagger': '2.0',
-    'info': {
-        'title': 'Balerion API',
-        'description': 'Task Management API Documentation',
-        'version': '1.0.0',
-    },
-}
-
 
 class ApiInfrastructure:
     app: Flask = None
@@ -28,7 +19,9 @@ class ApiInfrastructure:
     def get_app(cls) -> Flask:
         if cls.app is None:
             cls.app = Flask(__name__)
-            cls.swagger = Swagger(app=cls.app, template=swagger_template)
+            cls.swagger = Swagger(
+                app=cls.app, template=cls.get_swagger_template()
+            )
 
         cls._configure_app()
         return cls.app
@@ -58,3 +51,15 @@ class ApiInfrastructure:
         config.access_log = True
         config.bind = [f'{host}:{port}']
         return config
+
+    @staticmethod
+    def get_swagger_template():
+        swagger_template = {
+            'swagger': '2.0',
+            'info': {
+                'title': 'Balerion API',
+                'description': 'Task Management API Documentation',
+                'version': '1.0.0',
+            },
+        }
+        return swagger_template

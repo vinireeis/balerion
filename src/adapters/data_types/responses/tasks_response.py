@@ -38,6 +38,7 @@ class GetOneTaskResponse(BaseResponse):
 
 class NewTaskResponse(BaseResponse):
     payload: TaskIdPayload
+    status: int = Field(default=201)
 
 
 class UpdateTaskResponse(BaseResponse):

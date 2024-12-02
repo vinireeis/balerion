@@ -1,5 +1,8 @@
 from http import HTTPStatus
 
+from src.adapters.data_types.requests.health_check_request import (
+    HealthCheckResponse,
+)
 from src.adapters.data_types.requests.tasks_request import (
     NewTaskRequest,
     PatchTaskStatusRequest,
@@ -16,20 +19,11 @@ from src.adapters.data_types.responses.tasks_response import (
 
 map_doc_definitions = {
     'health_check': {
-        'tags': ['Tasks'],
-        'parameters': [
-            {
-                'name': 'task_id',
-                'in': 'path',
-                'type': 'integer',
-                'required': 'true',
-                'description': 'Task ID',
-            }
-        ],
+        'tags': ['Health Check'],
         'responses': {
             HTTPStatus.OK: {
-                'description': 'Task details',
-                'schema': GetOneTaskResponse.get_swagger_schema(),
+                'description': 'API Health Check',
+                'schema': HealthCheckResponse.model_json_schema(),
             }
         },
     },
