@@ -28,8 +28,8 @@ ruff = "^0.8.1"
 
 [tool.pytest.ini_options]
 pythonpath = "."
-addopts = '-p no:warnings'
-asyncio_mode = "strict"
+addopts = "--cov=src/services --cov-report=term-missing"
+asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.ruff]

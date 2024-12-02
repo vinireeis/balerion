@@ -34,6 +34,7 @@ services:
     command: >
       sh -c "
       until pg_isready -h db -p 5432; do sleep 1; done &&
+      pytest --asyncio-mode=auto --cov=src/services --cov-report=term-missing &&
       alembic upgrade head &&
       python3 main.py"
 
