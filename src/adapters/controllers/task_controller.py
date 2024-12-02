@@ -9,12 +9,12 @@ from src.adapters.data_types.responses.tasks_response import (
     DeleteTaskResponse,
     GetOneTaskResponse,
     NewTaskResponse,
+    PatchTaskStatusResponse,
     TaskIdPayload,
     TaskPayload,
     TasksPaginatedPayload,
     TasksPaginatedResponse,
     UpdateTaskResponse,
-    UpdateTaskStatusResponse,
 )
 from src.services.tasks.service import TasksService
 
@@ -105,9 +105,9 @@ class TasksController:
     @classmethod
     async def patch_task_status(
         cls, patch_status_request: PatchTaskStatusRequest
-    ) -> UpdateTaskStatusResponse:
+    ) -> PatchTaskStatusResponse:
         await TasksService.patch_task_status(request=patch_status_request)
-        response = UpdateTaskStatusResponse(
+        response = PatchTaskStatusResponse(
             success=True,
             message='Task status has been updated.',
             status_code=HTTPStatus.OK,

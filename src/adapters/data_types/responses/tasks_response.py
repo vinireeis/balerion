@@ -18,7 +18,7 @@ class TaskPayload(BaseModel):
 
 
 class TasksPaginatedPayload(BaseModel):
-    tasks: list[TaskPayload] = Field(default=list)
+    tasks: list[TaskPayload] = Field(default_factory=list)
     total: int
     limit: int
     offset: int
@@ -44,7 +44,7 @@ class UpdateTaskResponse(BaseResponse):
     pass
 
 
-class UpdateTaskStatusResponse(BaseResponse):
+class PatchTaskStatusResponse(BaseResponse):
     pass
 
 
