@@ -17,6 +17,7 @@ loguru = "^0.7.2"
 alembic = "^1.14.0"
 asyncpg = "^0.30.0"
 asgiref = "^3.8.1"
+flasgger = "^0.9.7.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -28,6 +29,8 @@ ruff = "^0.8.1"
 [tool.pytest.ini_options]
 pythonpath = "."
 addopts = '-p no:warnings'
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
 
 [tool.ruff]
 line-length = 79
@@ -40,7 +43,6 @@ select = ['I', 'F', 'E', 'W', 'PL', 'PT']
 [tool.ruff.format]
 preview = true
 quote-style = 'single'
-
 
 [build-system]
 requires = ["poetry-core"]
